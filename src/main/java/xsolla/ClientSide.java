@@ -44,8 +44,6 @@ public class ClientSide extends HttpServlet {
         String itemSku = request.getParameter("itemSku");
         String userToken = request.getParameter("userToken");
         String body = request.getParameter("body");
-        String webhookSecretKey = request.getParameter("webhookSecretKey");
-
 
         String apiUrl = "https://store.xsolla.com/api/v2/project/" + projectId + "/payment/item/" + itemSku;
 
