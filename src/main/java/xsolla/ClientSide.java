@@ -19,18 +19,21 @@ public class ClientSide extends HttpServlet {
     private final String projectId;
     private final String loginId;
     private final String backendPort;
+    private final String webhookSecretKey;
 
     public ClientSide() {
         Dotenv dotenv = Dotenv.load();
         this.projectId = dotenv.get("XSOLLA_PROJECT_ID");
         this.loginId = dotenv.get("XSOLLA_LOGIN_ID");
         this.backendPort = dotenv.get("BACKEND_PORT");
+        this.webhookSecretKey = dotenv.get("XSOLLA_WEBHOOK_SECRET_KEY");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setAttribute("xsollaProjectId", this.projectId);
         request.setAttribute("xsollaLoginId", this.loginId);
         request.setAttribute("backendPort", this.backendPort);
+        request.setAttribute("xsollaWebhookSecretKey", this.webhookSecretKey);
 
         request.getRequestDispatcher("/client-side.jsp").forward(request, response);
     }
@@ -41,6 +44,7 @@ public class ClientSide extends HttpServlet {
         String itemSku = request.getParameter("itemSku");
         String userToken = request.getParameter("userToken");
         String body = request.getParameter("body");
+        String webhookSecretKey = request.getParameter("webhookSecretKey");
 
 
         String apiUrl = "https://store.xsolla.com/api/v2/project/" + projectId + "/payment/item/" + itemSku;
@@ -80,6 +84,7 @@ public class ClientSide extends HttpServlet {
             request.setAttribute("xsollaLoginId", this.loginId);
             request.setAttribute("backendPort", this.backendPort);
             request.setAttribute("userToken", userToken);
+            request.setAttribute("xsollaWebhookSecretKey", this.webhookSecretKey);
 
             request.getRequestDispatcher("/client-side.jsp").forward(request, response);
 

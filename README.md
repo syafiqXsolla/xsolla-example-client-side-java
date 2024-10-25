@@ -25,7 +25,14 @@ Update the .env file with the appropriate values. Your project ID is available i
 
 ![screenshot](doc/img/where-id.png)
 
-### 2. Build the project with Maven
+### 2. Create login project
+
+In your Xsolla Publisher Account -> your project -> Login -> New login project
+Or open the page: https://publisher.xsolla.com/<YOUR_MERCHANT>/projects/<YOUR_PROJECT>/login
+
+And copy your Login ID to .env
+
+### 3. Build the project with Maven
 
 ```markdown
 mvn clean install
@@ -33,9 +40,14 @@ mvn clean install
 
 The output xsolla-example.war file will be in the target directory.
 
-### 3. Start Docker Containers
+**It's crucial to remember that your project needs to be rebuilt whenever changes are made to the codebase or .env variables.**
+
+### 4. Start Docker Containers
 
 Run the project using Docker Compose:
+
+**It's crucial to remember that your Docker need to be rebuilt too after every project rebuilt.**
+
 
 ```bash
 docker-compose up --build
@@ -43,27 +55,20 @@ docker-compose up --build
 
 The application will be accessible at http://localhost:8080/xsolla-example/client-side.
 
-### 4. Configure Ngrok
+### 5. Configure Ngrok
 
 ![screenshot](doc/img/ngrok-url.png)
 Ngrok provides a public URL for accessing your local server. You can open the Ngrok dashboard at http://localhost:4040.
 
-Copy the resulting URL and append /webhook.php to it (for example, https://<random>
-.ngrok-free.app/xsolla-example/webhook.php`) and add it to the webhook settings of your project at https://publisher.xsolla.com/<YOUR_MERCHANT>/projects/<YOUR_PROJECT>/edit/webhooks/`.
+Copy the resulting URL and append /xsolla-example/webhook to it (for example, https://<random>.ngrok-free.app/xsolla-example/webhook) and add it to the webhook settings of your project at https://publisher.xsolla.com/<YOUR_MERCHANT>/projects/<YOUR_PROJECT>/edit/webhooks/.
 
-### 4. Create login project
 
-In your Xsolla Publisher Account -> your project -> Login -> New login project
-Or open the page: https://publisher.xsolla.com/<YOUR_MERCHANT>/projects/<YOUR_PROJECT>/login
-
-And copy your Login ID to .env
-
-### 5. Add a product in Publisher Account
+### 6. Add a product in Publisher Account
 
 Create a product in your Xsolla Publisher Account. Navigate to your project > store > virtual items > add item, or open
 the page directly at https://publisher.xsolla.com/<YOUR_MERCHANT>/projects/<YOUR_PROJECT>/storefront/virtual-items.
 
-### 6. Test the payment process
+### 7. Test the payment process
 
 Open the example UI at http://localhost:8080/xsolla-example/client-side.
 

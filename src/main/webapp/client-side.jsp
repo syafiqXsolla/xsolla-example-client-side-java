@@ -16,6 +16,7 @@
         <label>Project id <input name="project" type="text" value="<%= request.getAttribute("xsollaProjectId") %>"></label><br><br>
         <label>Login id <input name="login" type="text" value="<%= request.getAttribute("xsollaLoginId") %>"></label><br><br>
         <label>User token <input id="user" name="userToken" type="text" value="<%= request.getAttribute("userToken") != null ? request.getAttribute("userToken") : "" %>"></label> <button type="button" onclick="openWidget()">Auth</button><br><br>        <label>Item sku <input name="itemSku" type="text" value="mysku01"></label><br><br>
+        <label>Webhook secret key <input name="webhookSecretKey" type="text" value="<%= request.getAttribute("xsollaWebhookSecretKey") %>"></label><br><br>
         <label>JSON body <textarea name="body" cols="90" rows="40">
 {
     "sandbox": true
